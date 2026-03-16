@@ -1,100 +1,310 @@
 # Inventory Management System
 
-Portfolio project scaffold with:
+Internal web application for managing products, suppliers, and stock movements.
 
-- Backend: FastAPI + SQLAlchemy + PostgreSQL
-- Frontend: React (Vite)
-- Python package manager: Poetry
+Built as a realistic business tool to demonstrate backend, database, and full-stack development skills for internal operations software.
 
-## Project structure
+---
 
-```text
-inventory-management-system/
-├── backend/
-│   ├── app/
-│   ├── pyproject.toml
-│   └── .env.example
-├── frontend/
-│   ├── src/
-│   └── package.json
-└── docker-compose.yml
+## Overview
+
+This system allows organizations to:
+
+- Track products and inventory levels
+- Manage suppliers
+- Record stock entries and exits
+- Monitor low-stock items
+- View recent activity
+- Maintain an auditable history of movements
+
+Designed for small-to-medium operations that need a lightweight internal inventory solution.
+
+---
+
+## Demo
+
+<p align="center">
+  Dashboard
+</p>
+
+![Dashboard](docs/dashboard.png)
+
+<p align="center">
+  Products Manager
+</p>
+
+![Products](docs/products.png)
+
+<p align="center">
+  Movements Manager
+</p>
+
+![Products](docs/movements.png)
+
+<p align="center">
+  Suppliers Manager
+</p>
+
+![Products](docs/suppliers.png)
+
+**Demo credentials (available if seeded):**
+
 ```
+username: admin
+password: admin
+```
+
+---
+
+## Features
+
+### Core Functionality
+
+- Product management (CRUD)
+- Supplier management (CRUD)
+- Stock movement tracking (IN / OUT)
+- Automatic quantity updates
+- Minimum stock thresholds
+- Low-stock alerts
+- Dashboard with key metrics
+- Movement history
+
+### Operational Features
+
+- Relational data model
+- Audit-friendly movement tracking
+- Search and filtering
+- Clean internal-tool UI
+- Demo data seeding
+
+---
+
+## Tech Stack
+
+### Backend
+
+- FastAPI
+- SQLAlchemy
+- Alembic (database migrations)
+- PostgreSQL
+- Poetry (dependency management)
+
+### Frontend
+
+- React (Vite)
+
+### Dev & Tooling
+
+- Docker (PostgreSQL container)
+- Just (task runner)
+- Bash scripts
+
+---
+
+## Project Structure
+
+```
+backend/
+  app/
+  alembic/
+frontend/
+docker-compose.yml
+justfile
+```
+
+---
 
 ## Prerequisites
 
-- Python 3.12+
+Install before running locally:
+
+- Docker
+- Python 3.11+
 - Poetry
-- Node.js 20+
+- Node.js 18+
 - npm
-- Docker + Docker Compose
 
-## 1) Start PostgreSQL
+---
 
-```bash
-docker compose up -d db
+## Quick Start (Recommended)
+
+### 1) Install package dependencies
+
+```
+just up
 ```
 
-Database defaults:
 
-- Database: `inventory`
-- User: `inventory_user`
-- Password: `inventory_password`
-- Port: `5432`
+### 2) Start database
 
-## 2) Run backend
-
-```bash
-cd backend
-cp .env.example .env
-poetry install
-poetry run uvicorn app.main:app --reload
+```
+just up
 ```
 
-Backend URL: `http://localhost:8000`
-Docs: `http://localhost:8000/docs`
+Starts PostgreSQL in Docker.
 
-## 3) Run frontend
+---
 
-```bash
-cd frontend
-npm install
-npm run dev
+### 3) Run database migrations
+
+```
+just migrate
 ```
 
-Frontend URL: `http://localhost:5173`
+Creates all required tables.
 
-## 4) Database migrations (Alembic)
+---
 
-From the `backend` folder:
+### 4) Seed demo data (optional but recommended)
 
-```bash
-poetry run alembic upgrade head     # apply all migrations
-poetry run alembic revision --autogenerate -m "add warehouses"  # new migration
+```
+just seed
 ```
 
-An initial migration `0001_create_products_table` is provided.
+Populates suppliers, products, and stock movements for testing.
 
-## 5) Using just (optional)
+---
 
-If you have `just` installed, from the project root you can run:
+### 5) Start backend
 
-```bash
-just up           # start PostgreSQL
-just backend      # run FastAPI backend
-just frontend     # run React frontend
-just migrate      # apply migrations
-just migration "add warehouses"  # autogenerate new migration
+```
+just backend
 ```
 
-## API endpoints (starter)
+Backend runs at:
 
-- `GET /api/v1/health`
-- `GET /api/v1/products`
-- `POST /api/v1/products`
+```
+http://localhost:8000
+```
 
-## Next recommended steps
+---
 
-- Add Alembic for database migrations
-- Add authentication (JWT)
-- Add tests for API routes and database layer
-- Add product categories, stock movements, and dashboard metrics
+### 6) Start frontend
+
+Open a new terminal:
+
+```
+just frontend
+```
+
+Frontend runs at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Common Development Commands
+
+### Start PostgreSQL
+
+```
+just up
+```
+
+### Stop PostgreSQL
+
+```
+just stop
+```
+
+---
+
+### Apply latest migrations
+
+```
+just migrate
+```
+
+### Create new migration
+
+```
+just migration "description"
+```
+
+### Downgrade database
+
+```
+just downgrade <revision>
+```
+
+---
+
+### Seed demo data
+
+```
+just seed
+```
+
+---
+
+## Maintenance / Reset Commands
+
+Use carefully.
+
+### Drop and recreate database schema
+
+```
+just drop-tables
+```
+
+### Recreate base migration
+
+```
+just new-base-migration
+```
+
+### Clean Docker resources
+
+```
+just wipe-docker
+```
+
+---
+
+## Data Model Overview
+
+Main entities:
+
+- Users
+- Suppliers
+- Products
+- Stock Movements
+
+Inventory levels are derived from movement history to preserve auditability.
+
+---
+
+## Development Notes
+
+- Backend uses RESTful patterns
+- Database schema managed via Alembic migrations
+- Designed for extensibility (multi-warehouse, roles, reporting, etc.)
+- Not intended as production-ready software without additional hardening
+
+---
+
+## Use Cases
+
+Suitable as a starting point for:
+
+- Internal inventory systems
+- Warehouse tracking tools
+- Asset management systems
+- Operational dashboards
+- Custom business software projects
+
+---
+
+## Author
+
+Rafael Tolini  
+Computer Science — PUC-Rio  
+Backend / Data / Automation Development
+
+---
+
+## License
+
+MIT License
