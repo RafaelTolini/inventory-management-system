@@ -132,7 +132,7 @@ Install before running locally:
 ### 1) Install package dependencies
 
 ```
-just up
+just install-deps
 ```
 
 
