@@ -49,14 +49,6 @@ Designed for small-to-medium operations that need a lightweight internal invento
 
 ![Products](docs/suppliers.png)
 
-**Default credentials (if authentication enabled):**
-
-```
-username: admin
-password: admin
-```
-
----
 
 ## Features
 
@@ -192,6 +184,17 @@ Frontend runs at:
 
 ```
 http://localhost:5173
+```
+
+---
+
+### 7) Login
+
+**Default credentials (if authentication enabled):**
+
+```
+username: admin
+password: admin
 ```
 
 ---
