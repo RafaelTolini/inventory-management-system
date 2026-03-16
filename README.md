@@ -2,7 +2,9 @@
 
 Internal web application for managing products, suppliers, and stock movements.
 
-Built as a realistic business tool to demonstrate backend, database, and full-stack development skills for internal operations software.
+Built as a realistic business tool to demonstrate backend, database, and full-stack development skills for internal operations software.  
+
+Suitable as a foundation for small internal inventory systems or as a starting point for custom business tooling.
 
 ---
 
@@ -21,7 +23,7 @@ Designed for small-to-medium operations that need a lightweight internal invento
 
 ---
 
-## Demo
+## Screenshots
 
 <p align="center">
   Dashboard
@@ -30,24 +32,24 @@ Designed for small-to-medium operations that need a lightweight internal invento
 ![Dashboard](docs/dashboard.png)
 
 <p align="center">
-  Products Manager
+  Products
 </p>
 
 ![Products](docs/products.png)
 
 <p align="center">
-  Movements Manager
+  Movements
 </p>
 
 ![Products](docs/movements.png)
 
 <p align="center">
-  Suppliers Manager
+  Suppliers
 </p>
 
 ![Products](docs/suppliers.png)
 
-**Demo credentials (available if seeded):**
+**Default credentials (if authentication enabled):**
 
 ```
 username: admin
@@ -104,12 +106,11 @@ password: admin
 ## Project Structure
 
 ```
-backend/
-  app/
-  alembic/
-frontend/
-docker-compose.yml
-justfile
+backend/        FastAPI application  
+frontend/       React application  
+alembic/        Database migrations  
+docker-compose.yml  PostgreSQL container  
+justfile        Development task runner  
 ```
 
 ---
